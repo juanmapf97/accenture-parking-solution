@@ -2,3 +2,5 @@ plate_dataset/
 plate_simulation/
 env/
 .vscode/
+argus-web/node_modules/
+argus-web/.next/
