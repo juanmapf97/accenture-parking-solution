@@ -4,6 +4,7 @@ import json
 import boto3
 from botocore.exceptions import NoCredentialsError
 from alvr import detectPlate
+from datetime import datetime, timezone
 
 ACCESS_KEY = 'AKIA2NEDLSIHWVJLPJVW'
 SECRET_KEY = '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'
@@ -41,9 +42,10 @@ def action(path):
     nameCropped = str(pk) + '-cropped.png'
     cv2.imwrite(path + nameCropped, cropped)
 
-    nameText = str(pk) + '-text.json'
+    nameText = str(pk) + '-text.json')
     data = {
-        'plate' : text
+        'plate' : text,
+        'created_on': datetime.now()
     }
     with open(path + nameText, 'w') as fp:
         json.dump(data, fp)
