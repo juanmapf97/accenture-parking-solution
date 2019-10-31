@@ -14,9 +14,10 @@ pk = 0
 def uploadToAws(local_file, bucket, s3_file = None):
     s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
                       aws_secret_access_key=SECRET_KEY)
-
+    
+    content_type = 'image/png' if local_file.split('.')[1] == 'png' else 'text/plain'
     try:
-        s3.upload_file(local_file, bucket, s3_file)
+        s3.upload_file(local_file, bucket, s3_file, ExtraArgs={'ACL': 'public-read', 'Metadata': {'Content-Type': content_type}})
         # print("Upload Successful")
         return True
     except FileNotFoundError:
