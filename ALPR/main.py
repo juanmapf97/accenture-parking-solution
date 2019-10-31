@@ -4,6 +4,7 @@ import json
 import boto3
 from botocore.exceptions import NoCredentialsError
 from alvr import detectPlate
+from datetime import datetime, timezone
 
 ACCESS_KEY = 'AKIA2NEDLSIHWVJLPJVW'
 SECRET_KEY = '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'
@@ -14,9 +15,10 @@ pk = 0
 def uploadToAws(local_file, bucket, s3_file = None):
     s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
                       aws_secret_access_key=SECRET_KEY)
-
+    
+    content_type = 'image/png' if local_file.split('.')[1] == 'png' else 'text/plain'
     try:
-        s3.upload_file(local_file, bucket, s3_file)
+        s3.upload_file(local_file, bucket, s3_file, ExtraArgs={'ACL': 'public-read', 'Metadata': {'Content-Type': content_type}})
         # print("Upload Successful")
         return True
     except FileNotFoundError:
@@ -40,9 +42,10 @@ def action(path):
     nameCropped = str(pk) + '-cropped.png'
     cv2.imwrite(path + nameCropped, cropped)
 
-    nameText = str(pk) + '-text.json'
+    nameText = str(pk) + '-text.json')
     data = {
-        'plate' : text
+        'plate' : text,
+        'created_on': datetime.now().strftime('%d %b %Y')
     }
     with open(path + nameText, 'w') as fp:
         json.dump(data, fp)

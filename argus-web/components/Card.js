@@ -10,7 +10,7 @@ const backgroundStyle = {
 
 const Card = props => (
     <div className="main">
-        <h3>{props.plate}<span className="date">30/10/19</span></h3>
+        <h3>{props.plate}<span className="date">{props.date}</span></h3>
         <div className="bkg-img"></div>
         <div className="inspect">Inspect visitor →</div>
         <style jsx>{`
