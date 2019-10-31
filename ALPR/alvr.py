@@ -15,7 +15,7 @@ def getText(plate):
 # Detect a license plate in a picture
 def detectPlate(imageRoute):
     img = cv2.imread(imageRoute,cv2.IMREAD_COLOR)
-    img = imutils.resize(img, width=1080)
+    #img = imutils.resize(img, width=1080)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     gray = cv2.bilateralFilter(gray, 11, 17, 17) #Blur to reduce noise
     edged = cv2.Canny(gray, 30, 200) #Perform Edge detection

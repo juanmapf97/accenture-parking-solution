@@ -37,7 +37,7 @@ def action(image_path):
     # Detecting and processing image
     text, cropped, img = detectPlate(image_path)
 
-    licence_name, licence_crop = id_detection()
+    license_name, license_crop = id_detection()
 
     # Save files locally
     nameFull = str(pk) + '-full.png'
@@ -50,29 +50,30 @@ def action(image_path):
         raise Exception("Could not write image")
 
     licenceCropped = str(pk) + '-id.png'
-    if not cv2.imwrite(os.path.join(path, licenceCropped), licence_crop):
+    if not cv2.imwrite(os.path.join(path, licenceCropped), license_crop):
         raise Exception("Could not write image")
 
     nameText = str(pk) + '-text.json'
     data = {
         'plate' : text,
         'created_on': datetime.now().strftime('%d %b %Y'),
-        'name': licence_name
+        'name': license_name
     }
     with open(os.path.join(path, nameText), 'w') as fp:
         json.dump(data, fp)
     
-    # print(data)
-    # cv2.imshow('image',img)
-    # cv2.imshow('Cropped',cropped)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
+    print(data)
+    cv2.imshow('image',img)
+    cv2.imshow('cropped',cropped)
+    cv2.imshow('license',license_crop)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     # Upload things to bucket and delete local files
-    uploadToAws(path + nameFull, 'accenture-parking-solution', nameFull)
-    uploadToAws(path + nameCropped, 'accenture-parking-solution', nameCropped)
-    uploadToAws(path + nameText, 'accenture-parking-solution', nameText)
-    uploadToAws(path + licenceCropped, 'accenture-parking-solution', licenceCropped)
+    # uploadToAws(path + nameFull, 'accenture-parking-solution', nameFull)
+    # uploadToAws(path + nameCropped, 'accenture-parking-solution', nameCropped)
+    # uploadToAws(path + nameText, 'accenture-parking-solution', nameText)
+    # uploadToAws(path + licenceCropped, 'accenture-parking-solution', licenceCropped)
 
     pk += 1
 

@@ -8,6 +8,7 @@ import numpy as np
 import pytesseract
 import argparse
 import cv2
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
 
 
@@ -90,7 +91,7 @@ def text_name():
 	'''
 
 	# load the input image and grab the image dimensions
-	image = cv2.imread('images/Name007.png')
+	image = cv2.imread('images/Name007.jpeg')
 
 	#print(image.shape)
 	#height=image.shape[:1]
@@ -117,7 +118,7 @@ def text_name():
 		"feature_fusion/concat_3"]
 
 	# load the pre-trained EAST text detector
-	print("[INFO] loading EAST text detector...")
+	# print("[INFO] loading EAST text detector...")
 	net = cv2.dnn.readNet('frozen_east_text_detection.pb')
 
 	# construct a blob from the image and then perform a forward pass of
@@ -165,7 +166,7 @@ def text_name():
 		# wish to use the LSTM neural net model for OCR, and finally
 		# (3) an OEM value, in this case, 7 which implies that we are
 		# treating the ROI as a single line of text
-		config = ("-l tessdata/spa --oem 1 --psm 13")
+		config = ("-l eng --oem 1 --psm 13")
 		text = pytesseract.image_to_string(roi, config=config)
 
 		# add the bounding box coordinates and OCR'd text to the list
@@ -179,9 +180,9 @@ def text_name():
 	# loop over the results
 	for ((startX, startY, endX, endY), text) in results:
 		# display the text OCR'd by Tesseract
-		print("OCR TEXT")
-		print("========")
-		print("{}\n".format(text))
+		# print("OCR TEXT")
+		# print("========")
+		# print("{}\n".format(text))
 		string_name+=text+ ' '
 
 		# strip out non-ASCII text so we can draw the text on the image

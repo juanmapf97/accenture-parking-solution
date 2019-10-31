@@ -3,6 +3,7 @@ import numpy as np
 import imutils
 from text_recognition import text_name
 import pytesseract
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
 def auto_canny(image, sigma=0.55):
     # compute the median of the single channel pixel intensities
@@ -43,7 +44,7 @@ def id_detection():
 
         edged = auto_canny(opening)
         
-        cv2.imshow('edge',edged)
+        #cv2.imshow('edge',edged)
 
 
         cnts = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -62,15 +63,15 @@ def id_detection():
             ar = w / float(h)
 
             if ar>1.4 and ar<1.6:       
-                print('rectagle', str(ar))
-                print('aprox', str(approx))
+                #print('rectagle', str(ar))
+                #print('aprox', str(approx))
 
                 cv2.drawContours(img, number_plate, -1, (0,255,0), 3)
 
-                cv2.imshow('square',img)
+                #cv2.imshow('square',img)
 
                 point1=approx[0][0][0]
-                print('point'+str(point1))
+                #print('point'+str(point1))
                 x1=approx[0][0][0]
                 y1=approx[0][0][1]
                 x2 = approx[1][0][0]
@@ -86,7 +87,7 @@ def id_detection():
                 bot_right_y = max([y1,y2,y3,y4])
                 
                 crop=img[top_left_y:bot_right_y+1, top_left_x:bot_right_x+1]
-                cv2.imshow('crop',crop)
+                #cv2.imshow('crop',crop)
 
                 name=crop[75:160,120:270]
                 #cv2.imshow('name',name)
@@ -103,7 +104,8 @@ def id_detection():
         
                 #cv2.imshow('dark',dark)
                 string_name=text_name()
-                print(string_name)
+                #print(string_name)
+                return string_name,crop
 
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
