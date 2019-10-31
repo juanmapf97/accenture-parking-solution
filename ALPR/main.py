@@ -45,7 +45,7 @@ def action(path):
     nameText = str(pk) + '-text.json')
     data = {
         'plate' : text,
-        'created_on': datetime.now()
+        'created_on': datetime.now().strftime('%d %b %Y')
     }
     with open(path + nameText, 'w') as fp:
         json.dump(data, fp)
