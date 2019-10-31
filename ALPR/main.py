@@ -5,7 +5,11 @@ import boto3
 import os
 from botocore.exceptions import NoCredentialsError
 from alvr import detectPlate
+<<<<<<< Updated upstream
 from datetime import datetime, timezone
+=======
+from card1 import id_detection
+>>>>>>> Stashed changes
 
 ACCESS_KEY = 'X'
 SECRET_KEY = 'X'
@@ -36,6 +40,8 @@ def action(image_path):
     # Detecting and processing image
     text, cropped, img = detectPlate(image_path)
 
+    licence_name, licence_crop = id_detection()
+
     # Save files locally
     nameFull = str(pk) + '-full.png'
     if not cv2.imwrite(os.path.join(path, nameFull), img):
@@ -46,10 +52,15 @@ def action(image_path):
     if not cv2.imwrite(os.path.join(path, nameCropped), cropped):
         raise Exception("Could not write image")
 
-    nameText = str(pk) + '-text.json')
+    licenceCropped = str(pk) + '-id.png'
+    if not cv2.imwrite(os.path.join(path, licenceCropped), licence_crop):
+        raise Exception("Could not write image")
+
+    nameText = str(pk) + '-text.json'
     data = {
         'plate' : text,
-        'created_on': datetime.now().strftime('%d %b %Y')
+        'created_on': datetime.now().strftime('%d %b %Y'),
+        'name': licence_name
     }
     with open(os.path.join(path, nameText), 'w') as fp:
         json.dump(data, fp)
@@ -64,6 +75,7 @@ def action(image_path):
     uploadToAws(path + nameFull, 'accenture-parking-solution', nameFull)
     uploadToAws(path + nameCropped, 'accenture-parking-solution', nameCropped)
     uploadToAws(path + nameText, 'accenture-parking-solution', nameText)
+    uploadToAws(path + licenceCropped, 'accenture-parking-solution', licenceCropped)
 
     pk += 1
 
