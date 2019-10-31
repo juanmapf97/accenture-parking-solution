@@ -5,11 +5,8 @@ import boto3
 import os
 from botocore.exceptions import NoCredentialsError
 from alvr import detectPlate
-<<<<<<< Updated upstream
 from datetime import datetime, timezone
-=======
 from card1 import id_detection
->>>>>>> Stashed changes
 
 ACCESS_KEY = 'X'
 SECRET_KEY = 'X'
