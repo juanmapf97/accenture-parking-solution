@@ -12,7 +12,16 @@ const Card = props => (
     <div className="main">
         <h3>{props.plate}<span className="date">{props.date}</span></h3>
         <div className="bkg-img"></div>
-        <div className="inspect">Inspect visitor →</div>
+        <div className="inspect" onClick={(e) => {
+            document.getElementsByClassName("sidebar-info")[0].style.display = "block";
+            setTimeout(() => {
+                document.getElementsByClassName("sidebar-info")[0].style.right = "1%";
+            }, 100);
+            document.getElementById("plate-info").innerText = props.plate;
+            document.getElementById("name-info").innerText = props.name;
+            document.getElementById("date-info").innerText = props.date;
+            document.getElementById("exit-date-info").innerText = props.date;
+        }}>Inspect visitor →</div>
         <style jsx>{`
             h3 {
                 margin-left: 5%;
