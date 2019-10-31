@@ -1,6 +1,6 @@
 # Accenture Parking Solution
 
-![](images/logo3.png)
+![](images/logo3.png "Filch Team Logo")
 
 
 ## Summary
