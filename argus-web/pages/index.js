@@ -15,6 +15,23 @@ const Index = props => (
                     closeup={license.closeup}
                     date={license.date}/>
             ))}</div>
+        <div className="sidebar-info">
+            <p className="exit" onClick={(e) => {
+                document.getElementsByClassName("sidebar-info")[0].style.right = "-35%";
+                setTimeout(() => {
+                    document.getElementsByClassName("sidebar-info")[0].style.display = "none";
+                }, 1000)
+            }}>← Cerrar</p>
+            <div className="license"></div>
+            <h3 className="subtitle">Placa</h3>
+            <h1 id="plate-info"></h1>
+            <h3 className="subtitle">Nombre</h3>
+            <h1 id="name-info"></h1>
+            <h3 className="subtitle">Fecha y hora de entrada</h3>
+            <h1 id="date-info"></h1>
+            <h3 className="subtitle">Fecha y hora de salida</h3>
+            <h1 id="exit-date-info"></h1>
+        </div>
         <svg className="transparent" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff5500" fill-opacity="0.4" d="M0,128L30,122.7C60,117,120,107,180,112C240,117,300,139,360,133.3C420,128,480,96,540,74.7C600,53,660,43,720,80C780,117,840,203,900,240C960,277,1020,267,1080,250.7C1140,235,1200,213,1260,181.3C1320,149,1380,107,1410,85.3L1440,64L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff5500" fill-opacity="0.2" d="M0,160L30,160C60,160,120,160,180,154.7C240,149,300,139,360,149.3C420,160,480,192,540,213.3C600,235,660,245,720,213.3C780,181,840,107,900,69.3C960,32,1020,32,1080,53.3C1140,75,1200,117,1260,149.3C1320,181,1380,203,1410,213.3L1440,224L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path></svg>
         <svg className="normal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff5500" fill-opacity="0.8" d="M0,128L30,133.3C60,139,120,149,180,128C240,107,300,53,360,69.3C420,85,480,171,540,176C600,181,660,107,720,80C780,53,840,75,900,101.3C960,128,1020,160,1080,170.7C1140,181,1200,171,1260,149.3C1320,128,1380,96,1410,80L1440,64L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path></svg>
@@ -29,11 +46,43 @@ const Index = props => (
                 bottom: 0;
                 left: 0;
             }
+            .sidebar-info {
+                position: absolute;
+                right: -35%;
+                height: 90%;
+                width: 500px;
+                background-color: white;
+                z-index: 2;
+                bottom: 2%;
+                border-radius: 8px;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+                transition: right 1s;
+                display: none;
+            }
+            .exit {
+                font-size: 18px;
+                cursor: pointer;
+                color: #0070f3
+            }
+            .license {
+                width: 90%;
+                height: 150px;
+                background: url('https://itinerantemx.files.wordpress.com/2012/08/licencia-conducir-sin-datos-nuevo-leon.png');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            .subtitle {
+                margin-top: 25px;
+                margin-bottom: -15px;
+                color: #888;
+            }
             svg {
                 position: absolute;
                 width: 100%;
                 bottom: 0;
                 left: 0;
+                z-index: -1;
             }
             .main-container {
                 margin: auto;
