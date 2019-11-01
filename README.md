@@ -9,6 +9,10 @@
 Software for license plates, id-text, car detection and faces recognition. Useful on
 residential subdivision entrances where security guards are required to register every visitor that comes in.
 
+###Id Detection
+![](images/contours.png "Id contour detection")
+![](images/contours1.png "Id contour1 detection")
+
 ## Index
  * [Prerequisites](#Prerequisites)
  * [Installation](#Installation)
@@ -48,6 +52,7 @@ The libraries used can be installed with the following commands:
 
 ## Using the software
 
-`python main.py (Path to licence plate image)`
+#### python main.py "Path to licence plate image"
+`python main.py "C:\Users\oscar\Desktop\semanaI\plates\plate27.png"`
 
 ## Contributors
