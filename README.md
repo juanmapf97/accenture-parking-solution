@@ -63,3 +63,9 @@ The libraries used can be installed with the following commands:
 `python main.py "Path to licence plate image`
 
 ## Contributors
+
+[Juan Manuel Perez] (https://github.com/juanmapf97)
+[Ivana Collado] (https://github.com/IvanaColl)
+[Oscar Laureano Haro] (https://github.com/oscarlaureano)
+[Diego Fernando Valencia] (https://github.com/diegoValencia97)
+
