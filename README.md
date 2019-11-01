@@ -9,12 +9,14 @@
 Software for license plates, id-text, car detection and faces recognition. Useful on
 residential subdivision entrances where security guards are required to register every visitor that comes in.
 
-###Id Detection
+### Id Detection
 
-Detección de coches
+Detección de coches usando tinyYolov3
+
 ![](images/car.jpeg "Id car detection")
 
 Detección de contornos de identificaciones
+
 ![](images/contours.png "Id contour detection")
 
 
