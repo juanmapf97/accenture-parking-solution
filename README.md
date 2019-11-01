@@ -1,13 +1,19 @@
 # Accenture Parking Solution
+## Argus
 
 ![](images/logo3.png "Filch Team Logo")
 
 
 ## Summary
 
-Software for license plates, text and faces recognition. Useful on
+Software for license plates, id-text, car detection and faces recognition. Useful on
 residential subdivision entrances where security guards are required to register every visitor that comes in.
 
+## Index
+ * [Prerequisites](#Prerequisites)
+ * [Installation](#Installation)
+ * [Using the software](#Using the software )
+ 
 ## Prerequisites
 
 Before you continue, ensure you meet the following requirements:
@@ -24,7 +30,7 @@ The libraries used can be installed with the following commands:
 
 `pip install opencv-python`
 
-- Pytesseract
+- Pytesseract >= 4.0
 
 `pip install pytesseract`
 
@@ -42,6 +48,6 @@ The libraries used can be installed with the following commands:
 
 ## Using the software
 
-
+`python main.py (Path to licence plate image)`
 
 ## Contributors
