@@ -16,7 +16,7 @@ residential subdivision entrances where security guards are required to register
 ## Index
  * [Prerequisites](#Prerequisites)
  * [Installation](#Installation)
- * [Using the software](#Using the software )
+ * [Using_the_software](#Using_the_software )
  
 ## Prerequisites
 
@@ -52,7 +52,6 @@ The libraries used can be installed with the following commands:
 
 ## Using the software
 
-#### python main.py "Path to licence plate image"
-`python main.py "C:\Users\oscar\Desktop\semanaI\plates\plate27.png"`
+`python main.py "Path to licence plate image`
 
 ## Contributors
