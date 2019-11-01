@@ -3,6 +3,7 @@ import numpy as np
 import imutils
 from text_recognition import text_name
 import pytesseract
+import pickle
 
 def auto_canny(image, sigma=0.55):
     # compute the median of the single channel pixel intensities
@@ -24,13 +25,46 @@ def id_text():
 '''
 
 def id_detection():
+	# Face recognition vars
+	face_cascade = cv2.CascadeClassifier(
+    'cascades/data/haarcascade_frontalface_alt2.xml')
+
+	recognizer = cv2.face.LBPHFaceRecognizer_create()
+	recognizer.read("trained.yml")
+
+	labels = {"person_name": 1}
+	with open("labels.pickle", 'rb') as f:
+	    og_labels = pickle.load(f)
+	    labels = {v: k for k, v in og_labels.items()}  # invert keys and values
+	# end Face recognition vars
+
     cap = cv2.VideoCapture(0)
     while(True):
-        ret, img = cap.read()
-
-        #img = cv2.imread("card_06.jpeg", -1)
+        ret, img = cap.read() 
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+        # face recognition
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.5, minNeighbors=5)
+        for x, y, w, h in faces:
+	        roi_gray = gray[y:y+h, x:x+w]
+	        roi_color = img[y:y+h, x:x+w]
+
+	        id_, conf = recognizer.predict(roi_gray)
+	        if conf >= 80:
+	            font = cv2.FONT_HERSHEY_SIMPLEX
+	            name = labels[id_]
+	            color = (255, 255, 255)
+	            stroke = 2
+	            cv2.putText(img, name, (x, y), font, 1,
+	                        color, stroke, cv2.LINE_AA)
+
+	        color = (255, 0, 0)  # BGR
+	        stroke = 2
+	        end_cord_x = x + w
+	        end_cord_y = y + h
+	        cv2.rectangle(img, (x, y), (end_cord_x, end_cord_y), color, stroke)
+	    # end face recognition
 
         gray = cv2.medianBlur(gray,13)
 
@@ -62,7 +96,7 @@ def id_detection():
             ar = w / float(h)
 
             if ar>1.4 and ar<1.6:       
-                print('rectagle', str(ar))
+                print('rectangle', str(ar))
                 print('aprox', str(approx))
 
                 cv2.drawContours(img, number_plate, -1, (0,255,0), 3)
