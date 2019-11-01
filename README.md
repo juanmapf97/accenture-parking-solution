@@ -64,8 +64,11 @@ The libraries used can be installed with the following commands:
 
 ## Contributors
 
-[Juan Manuel Perez] (https://github.com/juanmapf97)
-[Ivana Collado] (https://github.com/IvanaColl)
-[Oscar Laureano Haro] (https://github.com/oscarlaureano)
-[Diego Fernando Valencia] (https://github.com/diegoValencia97)
+[Juan Manuel Perez](https://github.com/juanmapf97)
+
+[Ivana Collado](https://github.com/IvanaColl)
+
+[Oscar Laureano Haro](https://github.com/oscarlaureano)
+
+[Diego Fernando Valencia](https://github.com/diegoValencia97)
 
