@@ -19,6 +19,11 @@ Detección de contornos de identificaciones
 
 ![](images/contours.png "Id contour detection")
 
+Reconocimiento de texto y extracción de Nombre de la identificación
+
+Detección de placa y reconocimiento de texto
+
+
 
 
 ## Index
